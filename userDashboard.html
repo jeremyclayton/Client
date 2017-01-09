@@ -99,66 +99,70 @@
 
         <!-- Portfolio Section -->
         <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Users Current Events</h2>
+            <div class="col-lg-12" id="parent-container">
+                <h2 class="page-header" id="event-header">Users Current Events</h2>
             </div>
-            <div class="col-md-3">
-                <h3 id="category-title">Filter By</h3>
-                <div class="list-group category-container" id="category-container">
-                    <div class="list-group-item category-all selected category-filter">All Events</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+              <h3 id="category-title">Filter By</h3>
+              <div class="list-group category-container" id="category-container">
+                  <div class="list-group-item category-all selected category-filter">All Events</div>
 
-                    <!-- Categories will populate here -->
-                </div>
-            </div>
-            <div class="card-container" id="parent-container">
-                <!-- Event cards will populate here -->
-            </div>
-
-
-            <script id="card-template" class="card-template-class" type="text/x-handlebars-template">
-                <div id="card-div-{{id}}" class="card-block col-md-3 col-sm-6 col-xs-12 span4 collapse-group">
-
-                    <!-- <img class="card-img-top" src="{{image_link}}" alt="Card image cap"> -->
-                    <h3>{{event_name}}</h3>
-                    <h4>Date: {{date}}</h4>
-                    <h4>Location: {{location}}</h4>
-                    <h4>Time: {{time}}</h4>
-                    <!-- <h4>Address: {{address}}</h4> -->
-                    <p class="collapse">{{description}}</p>
-                    <p><a class="btn" id="card-btn-{{id}}" href="#">View details »</a></p>
-                    <!-- <button id="card-button-{{id}}">{{categories}}</button> -->
-                </div>
-            </script>
-
-            <script id="category-template" type="text/x-handlebars-template">
-                <div class="list-group-item category-{{id}} category-filter">{{name}}</div>
-            </script>
-
-            <script id="welcome-template" type="text/x-handlebars-template">
-                <h1 class="page-header">Welcome {{first_name}} {{last_name}}</h1>
-            </script>
-
+                  <!-- Categories will populate here -->
+              </div>
           </div>
+          <div class="card-container">
+              <!-- Event cards will populate here -->
+          </div>
+        </div>
+
+
+
+        <script id="card-template" class="card-template-class" type="text/x-handlebars-template">
+            <div id="card-div-{{id}}" class="card-block col-md-3 col-sm-6 col-xs-12 span4 collapse-group">
+
+                <!-- <img class="card-img-top" src="{{image_link}}" alt="Card image cap"> -->
+                <h3>{{event_name}}</h3>
+                <h4>Date: {{date}}</h4>
+                <h4>Location: {{location}}</h4>
+                <h4>Time: {{time}}</h4>
+                <!-- <h4>Address: {{address}}</h4> -->
+                <p class="collapse">{{description}}</p>
+                <p><a class="btn" id="card-btn-{{id}}" href="#">View details »</a></p>
+                <!-- <button id="card-button-{{id}}">{{categories}}</button> -->
             </div>
-        <!-- Footer -->
-        <footer id="outer-footer">
-            <nav class="navbar navbar-default" id="footer-nav">
-                <div id="footer-div">
-                    <small>Copyright &copy; An App by Stack of All Trades</small>
-                </div>
-            </nav>
-        </footer>
+        </script>
+
+        <script id="category-template" type="text/x-handlebars-template">
+            <div class="list-group-item category-{{id}} category-filter">{{name}}</div>
+        </script>
+
+        <script id="welcome-template" type="text/x-handlebars-template">
+            <h1 class="page-header">Welcome {{first_name}} {{last_name}}</h1>
+        </script>
+
+    </div>
+    </div>
+    <!-- Footer -->
+    <footer id="outer-footer">
+        <nav class="navbar navbar-default" id="footer-nav">
+            <div id="footer-div">
+                <small>Copyright &copy; An App by Stack of All Trades</small>
+            </div>
+        </nav>
+    </footer>
 
 
 
 
 
-        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-        <script src="./scripts/shared.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sugar/2.0.4/sugar.min.js"></script>
-        <script src="./scripts/user.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script src="./scripts/shared.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sugar/2.0.4/sugar.min.js"></script>
+    <script src="./scripts/user.js" charset="utf-8"></script>
 
 </body>
 

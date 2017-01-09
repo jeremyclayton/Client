@@ -91,15 +91,13 @@ function createClickHandler(id) {
     });
 }
 
-function populateEvent(thisEvent, i) {
+function populateEvent(thisEvent) {
     var sourceName = null;
     thisEvent = normalizeData(thisEvent);
 
 
     var $card = $('<div class="panel panel-default event-card" + id="card-' + thisEvent.id + '"></div>');
-    if (i === 0) {
-        $card.attr('id', 'card1');
-    }
+
 
     var $heading = $('<div class="panel-heading"><h3 class="panel-title">' + thisEvent.event_name + '</h3></div>');
     var $body = $('<div class="panel-body"">' + thisEvent.date + ' at ' + thisEvent.time + '</div>');

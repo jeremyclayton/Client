@@ -39,9 +39,6 @@
              populateEvents(cleanEventArray)
          })
          .then((data) => {
-             if (window.location.hash !== "") {
-                 window.location.href = window.location.hash;
-             }
              let imageData = globalEventArray;
              populateImages(imageData);
          })
@@ -132,7 +129,7 @@
 
  function generateCarouselClickHandler($carouselCard, id) {
      $carouselCard.click(() => {
-       populateEventDetail(id);
+         populateEventDetail(id);
      })
  }
 
@@ -159,12 +156,11 @@
      const $thisCardBtn = $(`#card-btn-${eventID}`);
      $thisCardBtn.click(() => {
          populateEventDetail(eventID);
+
      })
  }
 
  function populateEventDetail(id) {
-     //  console.log(id);
-     //  console.log(globalEventArray);
      let $source = null;
      let $name = null;
      let $address = null;
@@ -178,7 +174,7 @@
      globalEventArray.forEach((event, index) => {
          const thisEvent = globalEventArray[index];
          if (id === thisEvent.id) {
-             $(`#parent-container`).empty();
+             $(`.card-container`).empty();
              $(`#category-container`).empty();
              $(`#category-title`).css("display", "none");
              $details = $(`<div id="details" class="container well"></div>`);
@@ -195,7 +191,7 @@
                  sourceLink = "";
              }
 
-
+             $("#event-header").text("Event Details");
              $name = $(`<h2 id="details-header">${thisEvent.event_name}</h2>`);
              $address = $(`<p><span class="event-label">Address: </span>${thisEvent.address}</p>`);
              $date = $(`<p><span class="event-label">Date: </span>${thisEvent.date}</p>`);
@@ -224,19 +220,16 @@
              $($details).append(`<a class="btn btn-danger" id="back-btn">Back to Event List</a>`);
              $(`#back-btn`).on('click', function() {
                  window.location.reload();
-                 window.location.href = `#card-div-${event.id}`;
-
-
-                 // $(`#category-title`).css("display", "flex");
              })
 
              const $sourceLink = $('#sourceLink');
              $sourceLink.attr('href', sourceLink);
+             //  debugger;
 
 
          }
      })
-
+    //  debugger;
  }
 
  function setGlobalEventHandlers() {
