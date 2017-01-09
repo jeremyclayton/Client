@@ -7,29 +7,32 @@
     vertical-align: baseline;
 }*/
 
-body {
-    width: 100vw;
-    height: 90vh;
-    max-height: 100vh;
-    background: url('../images/DenverPark.jpg');
-    background-size: cover;
-    background-position: 50/50;
-}
+        body {
+            width: 100vw;
+            height: 90vh;
+            max-height: 100vh;
+            background: url('../images/Optimized-DenverPark.jpg');
+            background-size: cover;
+            background-position: 50/50;
+        }
 
         #listTwo {
             height: 70vh;
             overflow-y: hidden !important;
         }
+
         label {
             font-size: 2em !important;
         }
+
         input {
             margin: 4vh !important;
         }
+
         main {
             margin-top: 8vh;
             background-color: #000B12;
-						opacity: 0.95;
+            opacity: 0.95;
             padding: 4%;
             height: 85vh;
         }
@@ -38,22 +41,37 @@ body {
             max-height: 70vh;
             overflow-y: scroll;
         }
+
         .selected {
             background-color: #49515a !important;
         }
-        #footer-div{
+
+        #footer-div {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
+
         #outer-footer {
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
+
         small {
             /*margin-left: 23em;*/
             /*text-align: center;*/
-            font-size: 1.2em;
+            /*font-size: 1.2em;*/
+        }
+
+        .event-card {
+            cursor: pointer;
+            cursor: hand;
+
+        }
+
+        .category-filter {
+          cursor:pointer;
+          cursor:hand;
         }

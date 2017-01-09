@@ -39,7 +39,7 @@
              populateEvents(cleanEventArray)
          })
          .then((data) => {
-             if(window.location.hash !== ""){
+             if (window.location.hash !== "") {
                  window.location.href = window.location.hash;
              }
              let imageData = globalEventArray;
@@ -95,7 +95,6 @@
  function populateEvents(eventArray) {
      eventArray.forEach((event) => {
          populateEvent(event);
-         createEventsEventHandler(event.id);
      });
 
  }
@@ -106,6 +105,7 @@
      const template = Handlebars.compile(source);
      const html = template(event);
      parent.append(html);
+     createEventsEventHandler(event.id);
  }
 
  function populateImages(imageData) {
@@ -126,8 +126,14 @@
          const $thisH2 = $(`#caption-${j}`);
          $thisH2.text(`${thisEvent.event_name}`);
          $thisCarouselCard.css(`background-image`, `url(${image_link})`);
-
+         generateCarouselClickHandler($thisCarouselCard, thisEvent.id);
      }
+ }
+
+ function generateCarouselClickHandler($carouselCard, id) {
+     $carouselCard.click(() => {
+       populateEventDetail(id);
+     })
  }
 
  function generateRandomIndex(max) {
@@ -175,41 +181,57 @@
              $(`#parent-container`).empty();
              $(`#category-container`).empty();
              $(`#category-title`).css("display", "none");
-             $details = $(`<div id="details" class="container"></div>`);
-             $source = $(`<p>${thisEvent.source_name}</p>`);
+             $details = $(`<div id="details" class="container well"></div>`);
+             $source = $(`<p><span class="event-label">Sourced From: </span><a id="sourceLink" target="_blank">${thisEvent.source_name}</a></p>`);
+             const sourceName = thisEvent.source_name;
+             let sourceLink = ""
+             if (sourceName == "WestWord") {
+                 sourceLink = "http://www.westword.com/";
+             } else if (sourceName == "Dear Denver") {
+                 sourceLink = "http://www.deardenver.net"
+             } else if (sourceName == "Meetup") {
+                 sourceLink = "https://www.meetup.com/";
+             } else {
+                 sourceLink = "";
+             }
+
+
              $name = $(`<h2 id="details-header">${thisEvent.event_name}</h2>`);
-             $address = $(`<p>${thisEvent.address}</p>`);
-             $date = $(`<p>${thisEvent.date}</p>`);
+             $address = $(`<p><span class="event-label">Address: </span>${thisEvent.address}</p>`);
+             $date = $(`<p><span class="event-label">Date: </span>${thisEvent.date}</p>`);
              $description = $(`<p>${thisEvent.description}</p>`);
-             $link = $(`<a href="${thisEvent.event_link}">Link for Event Original Posting</a>`);
+             $link = $(`<a href="${thisEvent.event_link}" id="original-link" target="_blank">Click Here for Host's Event Page</a>`);
              const thisImageLink = thisEvent.image_link;
-             $image = $(`<img src="${thisImageLink}">`);
-             $location = $(`<p>${thisEvent.location}</p>`);
-             $price = $(`<p>${thisEvent.price}</p>`);
-             $time = $(`<p>${thisEvent.time}</p>`);
+             $image = $(`<img class="event-image" src="${thisImageLink}">`);
+             $location = $(`<p><span class="event-label">Location: </span>${thisEvent.location}</p>`);
+             $price = $(`<p><span class="event-label">Price: </span>${thisEvent.price}</p>`);
+             $time = $(`<p><span class="event-label">Time: </span>${thisEvent.time}</p>`);
              $('#parent-container').append($details);
              $($details).append($name);
-             $($details).append($source);
-             $($details).append($description);
-             $($details).append($address);
-             $($details).append($date);
-             $($details).append($link);
              if (thisEvent.image_link !== null) {
                  $($details).append($image);
              }
+             $($details).append($date);
              $($details).append($time);
+             $($details).append($description);
              $($details).append($location);
+             $($details).append($address);
              $($details).append($price);
-             $($details).append(`<button class="btn btn-danger" id="back-btn">Back to List</button>`);
-             $(`#back-btn`).on('click', function (){
-                window.location.reload();
-                window.location.href = `#card-div-${event.id}`;
+             $($details).append($source);
+             if (thisEvent.event_link !== null) {
+                 $($details).append($link);
+             }
+             $($details).append(`<a class="btn btn-danger" id="back-btn">Back to Event List</a>`);
+             $(`#back-btn`).on('click', function() {
+                 window.location.reload();
+                 window.location.href = `#card-div-${event.id}`;
 
 
-                // $(`#category-title`).css("display", "flex");
+                 // $(`#category-title`).css("display", "flex");
              })
 
-
+             const $sourceLink = $('#sourceLink');
+             $sourceLink.attr('href', sourceLink);
 
 
          }
@@ -244,7 +266,7 @@
      });
  }
 
- function populateCategory(category){
+ function populateCategory(category) {
      const $parent = $('.category-container');
      const source = $(`#category-template`).html();
      const template = Handlebars.compile(source);
@@ -310,7 +332,7 @@
      }
 
      if (!event.event_link) {
-         event.event_link = "No Link Available";
+         //Event link left deliberately blank
      }
 
      if (!event.description) {
